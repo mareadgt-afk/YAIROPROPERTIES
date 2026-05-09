@@ -1,0 +1,22 @@
+{
+  "name": "yairo-rincon-luxury-hero",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -H 127.0.0.1 -p 5174",
+    "build": "next build",
+    "start": "next start -H 127.0.0.1 -p 5174",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "framer-motion": "latest",
+    "gsap": "latest",
+    "lenis": "latest",
+    "mapbox-gl": "latest"
+  },
+  "devDependencies": {}
+}

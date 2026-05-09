@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yairo Rincon Luxury Real Estate Design System</title>
+  <style>
+    :root {
+      --yr-black: #050505;
+      --yr-ink: #111312;
+      --yr-charcoal: #1A1D1B;
+      --yr-smoke: #737873;
+      --yr-mist: #C7CAC4;
+      --yr-white: #F6F4EF;
+      --yr-paper: #E9E5DC;
+      --yr-petroleum: #123832;
+      --yr-petroleum-dark: #09231F;
+      --yr-petroleum-soft: #315850;
+      --yr-champagne: #C8B98D;
+      --yr-border-dark: 1px solid rgba(246, 244, 239, .14);
+      --yr-border-light: 1px solid rgba(5, 5, 5, .1);
+      --yr-shadow-cinematic: 0 34px 90px rgba(0, 0, 0, .42);
+      --yr-ease-luxury: cubic-bezier(.16, 1, .3, 1);
+      --yr-ease-editorial: cubic-bezier(.77, 0, .175, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--yr-black);
+      color: var(--yr-white);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Neue Haas Grotesk Display", "Helvetica Neue", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 70% 10%, rgba(18, 56, 50, .18), transparent 30%),
+        linear-gradient(180deg, #050505 0%, #111312 48%, #050505 100%);
+      color: var(--yr-white);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 82px;
+      padding: 0 clamp(20px, 5vw, 80px);
+      background: rgba(5, 5, 5, .72);
+      border-bottom: var(--yr-border-dark);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", "Bodoni 72", Didot, Georgia, serif;
+      font-size: 26px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 9px;
+      letter-spacing: .42em;
+      color: var(--yr-mist);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      color: var(--yr-mist);
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color 420ms var(--yr-ease-luxury);
+    }
+
+    .nav-links a::after {
+      position: absolute;
+      right: 0;
+      bottom: -8px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--yr-petroleum-soft);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 520ms var(--yr-ease-luxury);
+    }
+
+    .nav-links a:hover {
+      color: var(--yr-white);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      justify-self: end;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      border: var(--yr-border-dark);
+      padding: 0 22px;
+      color: var(--yr-white);
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      line-height: 1;
+      text-transform: uppercase;
+      transition: transform 420ms var(--yr-ease-luxury), background 420ms var(--yr-ease-luxury), border-color 420ms var(--yr-ease-luxury), color 420ms var(--yr-ease-luxury);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--yr-petroleum);
+      box-shadow: 0 24px 70px rgba(18, 56, 50, .22);
+    }
+
+    .btn-primary:hover {
+      background: var(--yr-petroleum-dark);
+      border-color: rgba(200, 185, 141, .46);
+    }
+
+    .btn-secondary {
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: var(--yr-white);
+      color: var(--yr-black);
+    }
+
+    .hero {
+      display: grid;
+      min-height: calc(100svh - 82px);
+      grid-template-columns: minmax(0, 1.15fr) minmax(340px, .85fr);
+      border-bottom: var(--yr-border-dark);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(64px, 9vw, 150px) clamp(24px, 7vw, 112px);
+    }
+
+    .eyebrow,
+    .mono {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      color: var(--yr-champagne);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: "Cormorant Garamond", "Bodoni 72", Didot, Georgia, serif;
+      font-weight: 400;
+    }
+
+    h1 {
+      max-width: 920px;
+      margin-top: 28px;
+      font-size: clamp(58px, 9vw, 122px);
+      line-height: .88;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin: 34px 0 0;
+      color: var(--yr-mist);
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.58;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 46px;
+    }
+
+    .hero-media {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(5, 5, 5, .05), rgba(5, 5, 5, .68)),
+        url("yairo-reference-web.jpg") center / cover;
+    }
+
+    .hero-media::after {
+      position: absolute;
+      inset: 32px;
+      content: "";
+      border: var(--yr-border-dark);
+      pointer-events: none;
+    }
+
+    .glass-panel {
+      position: absolute;
+      right: 32px;
+      bottom: 32px;
+      left: 32px;
+      padding: 24px;
+      background: rgba(17, 19, 18, .46);
+      border: var(--yr-border-dark);
+      backdrop-filter: blur(18px);
+    }
+
+    .glass-panel strong {
+      display: block;
+      margin-top: 12px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 34px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .section {
+      padding: clamp(72px, 10vw, 150px) clamp(20px, 5vw, 80px);
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, .65fr) minmax(300px, .35fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .section h2 {
+      font-size: clamp(38px, 5.8vw, 76px);
+      line-height: .96;
+    }
+
+    .section-intro {
+      color: var(--yr-mist);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .palette {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(120px, 1fr));
+      border: var(--yr-border-dark);
+    }
+
+    .swatch {
+      min-height: 156px;
+      padding: 18px;
+      border-right: var(--yr-border-dark);
+    }
+
+    .swatch:last-child {
+      border-right: 0;
+    }
+
+    .swatch small {
+      display: block;
+      margin-top: 78px;
+      color: inherit;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .type-grid,
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .panel {
+      min-height: 260px;
+      padding: clamp(24px, 4vw, 46px);
+      background: rgba(246, 244, 239, .03);
+      border: var(--yr-border-dark);
+    }
+
+    .display-sample {
+      font-family: "Cormorant Garamond", "Bodoni 72", Didot, Georgia, serif;
+      font-size: clamp(52px, 7vw, 94px);
+      line-height: .88;
+    }
+
+    .sans-sample {
+      max-width: 520px;
+      color: var(--yr-mist);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .listing-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 24px;
+    }
+
+    .listing-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+      background: var(--yr-charcoal);
+      border: var(--yr-border-dark);
+      box-shadow: var(--yr-shadow-cinematic);
+    }
+
+    .listing-card.small {
+      min-height: 560px;
+    }
+
+    .listing-image {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5, 5, 5, .08), rgba(5, 5, 5, .78)),
+        url("yairo-reference-web.jpg") center / cover;
+      transform: scale(1.01);
+      transition: transform 900ms var(--yr-ease-luxury), filter 900ms var(--yr-ease-luxury);
+    }
+
+    .listing-card:hover .listing-image {
+      filter: saturate(.82) contrast(1.08);
+      transform: scale(1.045);
+    }
+
+    .listing-content {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: grid;
+      gap: 18px;
+      padding: 32px;
+    }
+
+    .price {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: .96;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: var(--yr-border-dark);
+      border-left: var(--yr-border-dark);
+    }
+
+    .stat {
+      padding: 14px;
+      border-right: var(--yr-border-dark);
+      border-bottom: var(--yr-border-dark);
+      color: var(--yr-mist);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      margin-top: 14px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 32px;
+      line-height: 1;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .field {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--yr-mist);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 0;
+      border-bottom: var(--yr-border-dark);
+      border-radius: 0;
+      padding: 16px 0;
+      outline: 0;
+      background: transparent;
+      color: var(--yr-white);
+      font: 17px/1.4 "Helvetica Neue", Arial, sans-serif;
+      transition: border-color 360ms var(--yr-ease-luxury);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--yr-petroleum-soft);
+    }
+
+    .motion-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: rgba(246, 244, 239, .14);
+      border: var(--yr-border-dark);
+    }
+
+    .motion-item {
+      min-height: 150px;
+      padding: 22px;
+      background: var(--yr-black);
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      padding: 48px clamp(20px, 5vw, 80px);
+      border-top: var(--yr-border-dark);
+      color: var(--yr-mist);
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hero,
+      .section-header,
+      .listing-grid,
+      .type-grid,
+      .component-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-media {
+        min-height: 66svh;
+      }
+
+      .palette {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .swatch {
+        border-bottom: var(--yr-border-dark);
+      }
+
+      .form-grid,
+      .motion-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto;
+        transition-duration: .01ms;
+        animation-duration: .01ms;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#">Yairo Rincon <span>Properties</span></a>
+      <div class="nav-links">
+        <a href="#palette">Palette</a>
+        <a href="#typography">Typography</a>
+        <a href="#components">Components</a>
+        <a href="#motion">Motion</a>
+      </div>
+      <a class="btn btn-primary nav-cta" href="#forms">Private Consultation</a>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Miami Luxury Real Estate System</div>
+        <h1>Yairo Rincon</h1>
+        <p class="lead">A severe, editorial identity system for waterfront estates, private consultations, and curated market intelligence. Black and white at the base, petroleum green in reserve, cinematic by default.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#components">View Components</a>
+          <a class="btn btn-secondary" href="#palette">Design Tokens</a>
+        </div>
+      </div>
+      <div class="hero-media" aria-label="Yairo Rincon brand reference">
+        <div class="glass-panel">
+          <span class="mono">System Mood</span>
+          <strong>Aman x AD x Miami</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="palette">
+      <div class="section-header">
+        <h2>Color Palette</h2>
+        <p class="section-intro">The palette stays almost monochrome. Petroleum green appears as a controlled signal: active states, CTAs, private-access moments, and quiet brand punctuation.</p>
+      </div>
+      <div class="palette">
+        <div class="swatch" style="background:#050505;color:#F6F4EF;">Black<small>#050505</small></div>
+        <div class="swatch" style="background:#111312;color:#F6F4EF;">Ink<small>#111312</small></div>
+        <div class="swatch" style="background:#1A1D1B;color:#F6F4EF;">Charcoal<small>#1A1D1B</small></div>
+        <div class="swatch" style="background:#123832;color:#F6F4EF;">Petroleum<small>#123832</small></div>
+        <div class="swatch" style="background:#315850;color:#F6F4EF;">Soft Green<small>#315850</small></div>
+        <div class="swatch" style="background:#C8B98D;color:#050505;">Champagne<small>#C8B98D</small></div>
+        <div class="swatch" style="background:#F6F4EF;color:#050505;">White<small>#F6F4EF</small></div>
+      </div>
+    </section>
+
+    <section class="section" id="typography">
+      <div class="section-header">
+        <h2>Typography</h2>
+        <p class="section-intro">Display type is fashion-house serif: high contrast, poised, and spacious. Interface text is tightly disciplined, mostly uppercase at small sizes.</p>
+      </div>
+      <div class="type-grid">
+        <div class="panel">
+          <div class="mono">Display Serif</div>
+          <div class="display-sample">Private Miami Estates</div>
+        </div>
+        <div class="panel">
+          <div class="mono">Editorial Sans</div>
+          <p class="sans-sample">Waterfront residences, architecture-led penthouses, and quiet off-market opportunities presented with measured hierarchy and cinematic restraint.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="components">
+      <div class="section-header">
+        <h2>Components</h2>
+        <p class="section-intro">Cards, buttons, forms, and navigation should behave like a private catalog: exact, restrained, spacious, and quietly responsive.</p>
+      </div>
+      <div class="listing-grid">
+        <article class="listing-card">
+          <div class="listing-image"></div>
+          <div class="listing-content">
+            <div class="mono">Featured Waterfront Residence</div>
+            <div class="price">$18.9M</div>
+            <div class="card-title">North Bay Road Estate</div>
+            <div class="stats">
+              <div class="stat">7 Beds</div>
+              <div class="stat">9 Baths</div>
+              <div class="stat">9,420 SF</div>
+              <div class="stat">Bayfront</div>
+            </div>
+            <a class="btn btn-primary" href="#">Request Dossier</a>
+          </div>
+        </article>
+        <div class="component-grid">
+          <div class="panel">
+            <div class="mono">Buttons</div>
+            <div style="display:grid;gap:14px;margin-top:28px;max-width:280px;">
+              <a class="btn btn-primary" href="#">Private Consultation</a>
+              <a class="btn btn-secondary" href="#">View Residence</a>
+            </div>
+          </div>
+          <div class="panel">
+            <div class="mono">Editorial Card</div>
+            <div class="card-title">Market Intelligence</div>
+            <p class="sans-sample">Short-form insights on Miami luxury absorption, waterfront scarcity, and off-market behavior.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="forms">
+      <div class="section-header">
+        <h2>Concierge Forms</h2>
+        <p class="section-intro">Forms should feel calm and private. The interface asks only what is needed to begin a serious conversation.</p>
+      </div>
+      <form class="panel form-grid">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Yairo Rincon">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="private@email.com">
+        </div>
+        <div class="field">
+          <label for="budget">Budget Range</label>
+          <select id="budget">
+            <option>$5M - $10M</option>
+            <option>$10M - $20M</option>
+            <option>$20M+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="neighborhood">Neighborhood</label>
+          <input id="neighborhood" type="text" placeholder="Miami Beach, Brickell, Coral Gables">
+        </div>
+        <div class="field full">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us what kind of residence you are considering."></textarea>
+        </div>
+        <div class="field full">
+          <button class="btn btn-primary" type="button">Request Private Consultation</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" id="motion">
+      <div class="section-header">
+        <h2>Transitions</h2>
+        <p class="section-intro">Motion is cinematic: a slow reveal, a restrained hover, a clean wipe. Nothing bouncy, cute, or noisy.</p>
+      </div>
+      <div class="motion-row">
+        <div class="motion-item"><div class="mono">Page Reveal</div><p class="sans-sample">Opacity + 24px vertical movement over 900ms.</p></div>
+        <div class="motion-item"><div class="mono">Listing Hover</div><p class="sans-sample">Image scale to 1.025 with low-contrast overlay fade.</p></div>
+        <div class="motion-item"><div class="mono">Menu Open</div><p class="sans-sample">Full-screen black wipe using editorial easing.</p></div>
+        <div class="motion-item"><div class="mono">CTA Hover</div><p class="sans-sample">Petroleum deepens, border warms, button lifts 1px.</p></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="brand">Yairo Rincon <span>Luxury Real Estate Design System</span></div>
+      <div class="mono">Black / White / Petroleum / Editorial</div>
+    </footer>
+  </main>
+</body>
+</html>
