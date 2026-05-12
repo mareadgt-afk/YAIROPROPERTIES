@@ -27,6 +27,22 @@ const RENT_STOPS = [
   { pos: 100, value: 300000 },
 ];
 
+const serviceAreas = [
+  "Parkland",
+  "Boca Raton",
+  "Brickell",
+  "Coconut Grove",
+  "Fort Lauderdale",
+  "Miami",
+  "Coral Springs",
+  "Weston",
+  "Plantation",
+  "Davie",
+  "Palm Beach",
+  "Broward County",
+  "Miami-Dade",
+];
+
 const videos = [
   {
     src: "/videos/optimized/miami-hero-01-compressed.mp4",
@@ -465,6 +481,82 @@ const propertyDetail = {
   ],
 };
 
+const journalArticles = [
+  {
+    title: "Waterfront Addresses That Hold Their Value",
+    category: "South Florida Waterfront",
+    image: "/bal-harbour.jpg",
+    description:
+      "A measured look at privacy, dockage, elevation, scarcity, and neighborhood rhythm across South Florida's most durable waterfront pockets.",
+    body: [
+      "Waterfront value in South Florida is rarely defined by view alone. The strongest addresses combine usable water, privacy, elevation, building quality, and a daily rhythm that continues to feel calm after the first impression fades.",
+      "For buyers, the conversation should begin with orientation, seawall condition, dockage, bridge access, insurance exposure, and the surrounding residential character. A beautiful home can still be a poor long-term decision if the water access, street pattern, or future maintenance profile does not support the price.",
+      "The best waterfront acquisitions tend to feel quiet, practical, and scarce. They offer a clear lifestyle advantage today while protecting optionality for tomorrow.",
+    ],
+    featured: true,
+  },
+  {
+    title: "Why Fort Lauderdale Keeps Drawing Serious Buyers",
+    category: "Fort Lauderdale",
+    image: "/brickell.jpg",
+    description:
+      "Marina access, quieter waterfront living, airport proximity, and a more residential pace continue to shape buyer attention.",
+    body: [
+      "Fort Lauderdale continues to attract buyers who want South Florida access without the constant pace of Miami. The city offers boating infrastructure, established waterfront neighborhoods, private aviation proximity, and a residential lifestyle that feels easier to live with year-round.",
+      "For many clients, the appeal is not only price or square footage. It is the ability to move between marina, airport, beach, dining, and home without losing the sense of privacy that matters at the upper end of the market.",
+      "The strongest opportunities are usually found where water access, lot quality, and neighborhood consistency meet. Those details carry more weight than surface-level finishes.",
+    ],
+  },
+  {
+    title: "Hidden Lifestyle Layers Between Miami and Broward",
+    category: "Lifestyle Intelligence",
+    image: "/coconut-grove.jpg",
+    description:
+      "Private dining, wellness, boating, design, and neighborhood routines that influence how a home actually feels after closing.",
+    body: [
+      "A residence is shaped by what surrounds it. The best neighborhoods are not only close to restaurants, clubs, marinas, or wellness spaces; they make those routines feel natural rather than forced.",
+      "Between Miami and Broward, small differences in traffic flow, restaurant quality, marina access, school patterns, and weekend rhythm can completely change how a property feels after closing. These are not always visible in a listing presentation.",
+      "A more useful search considers how the client actually lives: where they dine, where they move, how they host, how much privacy they need, and what kind of daily pace feels right.",
+    ],
+  },
+  {
+    title: "Reading Long-Term Property Value in South Florida",
+    category: "Market Perspective",
+    image: "/bal-harbour.jpg",
+    description:
+      "A practical framework for evaluating land, water, building quality, insurance exposure, walkability, and future demand.",
+    body: [
+      "Long-term property value is built through fundamentals. Land quality, location durability, elevation, construction integrity, neighborhood demand, and replacement cost matter more than temporary design trends.",
+      "In South Florida, buyers should also look carefully at insurance, building reserves, association health, flood positioning, and future supply. A polished residence can still carry hidden friction if the ownership structure is weak.",
+      "The right property should make sense emotionally and financially. When both are aligned, the decision feels calmer and the holding period becomes easier to navigate.",
+    ],
+  },
+  {
+    title: "Mortgage Intelligence for High-Value Homeowners",
+    category: "Financial Guidance",
+    image: "/brickell.jpg",
+    description:
+      "How liquidity, rate structure, tax exposure, and holding period should shape financing decisions before a purchase or sale.",
+    body: [
+      "Financing at the high end is not just about obtaining a rate. It is about liquidity, timing, tax strategy, opportunity cost, and the way a client wants to hold capital after closing.",
+      "Some buyers benefit from leverage even when they could purchase in cash. Others prefer a cleaner position because privacy, simplicity, or speed matters more than maximizing spread. The correct answer depends on the full picture.",
+      "A thoughtful mortgage conversation should happen early, before negotiation begins. It gives the buyer more control, stronger terms, and fewer surprises when the right property appears.",
+    ],
+  },
+  {
+    title: "The Residential Calm of Established Neighborhoods",
+    category: "Neighborhoods",
+    image: "/coconut-grove.jpg",
+    description:
+      "What separates a polished address from a genuinely livable residential environment over time.",
+    body: [
+      "Established neighborhoods have a different kind of value. They are shaped by trees, streets, schools, architecture, neighbors, and a rhythm that cannot be recreated quickly by new development.",
+      "For many clients, the best address is not the loudest one. It is the place where privacy, convenience, and daily comfort work together quietly. That is often what separates a good purchase from a home that continues to feel right years later.",
+      "The search should consider not only what a property shows, but what the neighborhood protects: time, calm, access, and long-term fit.",
+    ],
+  },
+];
+
 export function YairoHero() {
   const reduceMotion = useReducedMotion();
   const videoRefs = useRef([]);
@@ -581,6 +673,8 @@ export function YairoHero() {
   return (
     <main className="site-shell">
       <CustomCursor />
+      <FloatingWhatsApp />
+      <PrimaryNav tone="dark" />
 
       <AnimatePresence>
         {!isLoaded && (
@@ -638,40 +732,14 @@ export function YairoHero() {
         />
         <div className="hero-grain" />
 
-        <motion.nav
-          className="navbar"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? 1 : 0 }}
-          style={{
-            y: reduceMotion ? 0 : navY,
-            opacity: isLoaded ? (reduceMotion ? 1 : navOpacity) : 0,
-          }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-          aria-label="Primary navigation"
-        >
-          <MagneticAnchor className="brand" href="/" aria-label="Yairo Rincon home" strength={0.12}>
-            <img src="/yairo-logo.png" alt="Yairo Properties" />
-          </MagneticAnchor>
-          <div className="nav-links">
-            <MagneticAnchor href="/listings" strength={0.16}>Listings</MagneticAnchor>
-            <MagneticAnchor href="#advisory" strength={0.16}>Advisory</MagneticAnchor>
-            <MagneticAnchor href="#market" strength={0.16}>Market</MagneticAnchor>
-          </div>
-          <MagneticAnchor className="nav-action" href="#connect" strength={0.18}>
-            Private Access
-          </MagneticAnchor>
-        </motion.nav>
-
         <motion.div
           className="hero-content"
           style={{
             y: reduceMotion ? 0 : contentY,
             opacity: isLoaded ? (reduceMotion ? 1 : contentOpacity) : 0,
           }}
-          initial={{ filter: "blur(10px)" }}
-          animate={{
-            filter: isLoaded ? "blur(0px)" : "blur(10px)",
-          }}
+          initial={{ opacity: 0 }}
+          
           transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
         >
           <motion.h1
@@ -684,24 +752,24 @@ export function YairoHero() {
           >
             <motion.span
               variants={{
-                hidden: { opacity: 0, y: 26, filter: "blur(8px)" },
+                hidden: { opacity: 0, y: 26 },
                 visible: {
                   opacity: 1,
                   y: 0,
-                  filter: "blur(0px)",
+                  
                   transition: { duration: 1.05, ease: [0.16, 1, 0.3, 1] },
                 },
               }}
             >
-              Your Home =
+              Your Home
             </motion.span>
             <motion.em
               variants={{
-                hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+                hidden: { opacity: 0, y: 30 },
                 visible: {
                   opacity: 1,
                   y: 0,
-                  filter: "blur(0px)",
+                  
                   transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
                 },
               }}
@@ -709,9 +777,19 @@ export function YairoHero() {
               My Priority
             </motion.em>
           </motion.h1>
+          <motion.p
+            className="hero-subline"
+            initial={{ opacity: 0, y: 18 }}
+            animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1], delay: 0.92 }}
+          >
+            Residential guidance across Miami and South Florida.
+          </motion.p>
           <MagneticAnchor
             className="cta"
-            href="#connect"
+            href="https://wa.me/19548420980"
+            target="_blank"
+            rel="noreferrer"
             strength={0.28}
           >
             <span>Let's Connect</span>
@@ -749,7 +827,9 @@ export function YairoHero() {
       <SearchExperience activeMode={searchMode} onModeChange={setSearchMode} />
       <FeaturedPropertiesSection />
       <MeetYairoSection />
+      <AreasWeServeSection />
       <ValuationSection />
+      <SiteFooter />
     </main>
   );
 }
@@ -758,8 +838,10 @@ export function ListingsPage() {
   return (
     <main className="site-shell listings-site">
       <CustomCursor />
-      <ListingsNav />
+      <FloatingWhatsApp />
+      <PrimaryNav tone="light" />
       <ListingsPageSection standalone />
+      <SiteFooter />
     </main>
   );
 }
@@ -768,20 +850,42 @@ export function PropertyDetailPage() {
   return (
     <main className="site-shell property-site">
       <CustomCursor />
-      <ListingsNav />
+      <FloatingWhatsApp />
+      <PrimaryNav tone="dark" />
       <PropertyDetailExperience property={propertyDetail} />
+      <SiteFooter />
     </main>
   );
 }
 
-function ListingsNav() {
+export function JournalPage() {
+  return (
+    <main className="site-shell journal-site">
+      <CustomCursor />
+      <FloatingWhatsApp />
+      <PrimaryNav tone="light" />
+      <JournalExperience />
+      <SiteFooter />
+    </main>
+  );
+}
+
+function PrimaryNav({ tone = "light" }) {
+  const isScrolled = useScrolledNav();
+
   return (
     <motion.nav
-      className="navbar listings-navbar"
+      className={[
+        "navbar",
+        "listings-navbar",
+        "primary-nav",
+        `nav-${tone}`,
+        isScrolled ? "is-scrolled" : "",
+      ].join(" ")}
       initial={{ opacity: 0, y: -14 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      aria-label="Listings navigation"
+      aria-label="Primary navigation"
     >
       <MagneticAnchor className="brand" href="/" aria-label="Yairo Rincon home" strength={0.12}>
         <img src="/yairo-logo.png" alt="Yairo Properties" />
@@ -789,12 +893,100 @@ function ListingsNav() {
       <div className="nav-links">
         <MagneticAnchor href="/" strength={0.16}>Home</MagneticAnchor>
         <MagneticAnchor href="/listings" strength={0.16}>Listings</MagneticAnchor>
-        <MagneticAnchor href="/#advisory" strength={0.16}>Advisory</MagneticAnchor>
+        <MagneticAnchor href="/journal" strength={0.16}>Journal</MagneticAnchor>
       </div>
-      <MagneticAnchor className="nav-action" href="/#connect" strength={0.18}>
+      <MagneticAnchor
+        className="nav-action"
+        href="https://wa.me/19548420980"
+        target="_blank"
+        rel="noreferrer"
+        strength={0.18}
+      >
         Private Access
       </MagneticAnchor>
     </motion.nav>
+  );
+}
+
+function useScrolledNav() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const update = () => setIsScrolled(window.scrollY > 24);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  return isScrolled;
+}
+
+function FloatingWhatsApp() {
+  return (
+    <motion.a
+      className="floating-whatsapp"
+      href="https://wa.me/19548420980"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Open WhatsApp conversation with Yairo Properties"
+      initial={{ opacity: 0, x: -18 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+      whileHover={{ x: 4 }}
+      whileTap={{ scale: 0.96 }}
+    >
+      <img src="/whatsapp-button.png" alt="" loading="eager" decoding="async" />
+      <i />
+    </motion.a>
+  );
+}
+
+function SiteFooter() {
+  return (
+    <footer className="site-footer" aria-label="Yairo Properties footer">
+      <div className="footer-inner">
+        <div className="footer-brand-block">
+          <img src="/yairo-logo.png" alt="Yairo Properties" loading="lazy" decoding="async" />
+          <p>
+            Residential guidance for buying, leasing, selling, and evaluating property
+            across Miami, Broward, and South Florida.
+          </p>
+        </div>
+
+        <nav className="footer-nav" aria-label="Footer navigation">
+          <span>Navigation</span>
+          <MagneticAnchor href="/" strength={0.1}>Home</MagneticAnchor>
+          <MagneticAnchor href="/listings" strength={0.1}>Listings</MagneticAnchor>
+          <MagneticAnchor href="/journal" strength={0.1}>Journal</MagneticAnchor>
+          <MagneticAnchor href="/#meet-yairo" strength={0.1}>About</MagneticAnchor>
+          <MagneticAnchor href="/#connect" strength={0.1}>Contact</MagneticAnchor>
+        </nav>
+
+        <div className="footer-contact">
+          <span>Contact</span>
+          <MagneticAnchor href="https://yairoproperties.com" strength={0.1}>
+            yairoproperties.com
+          </MagneticAnchor>
+          <MagneticAnchor href="https://wa.me/19548420980" target="_blank" rel="noreferrer" strength={0.1}>
+            +1 954 842 0980
+          </MagneticAnchor>
+          <MagneticAnchor
+            href="https://www.google.com/maps/search/?api=1&query=201%20N%20University%20Dr%20%23105%2C%20Plantation%2C%20FL%2033324"
+            target="_blank"
+            rel="noreferrer"
+            strength={0.1}
+          >
+            201 N University Dr #105,<br />
+            Plantation, FL 33324
+          </MagneticAnchor>
+        </div>
+
+        <div className="footer-bottom">
+          <span>© 2026 Yairo Properties</span>
+          <span>Miami / Broward / Palm Beach</span>
+        </div>
+      </div>
+    </footer>
   );
 }
 
@@ -826,8 +1018,8 @@ function BuyRentSellSection({ onModeSelect }) {
       <div className="section-transition" aria-hidden="true" />
       <motion.div
         className="experience-intro"
-        initial={{ opacity: 0, y: 36, filter: "blur(10px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -855,9 +1047,9 @@ function BuyRentSellSection({ onModeSelect }) {
         <motion.div
           key={selectedExperience.key}
           className="experience-detail"
-          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: -18, filter: "blur(8px)" }}
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -18 }}
           transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
         >
           <div>
@@ -888,8 +1080,8 @@ function ExperiencePanel({ experience, index, isSelected, onSelect }) {
       className={`experience-panel experience-${experience.key}${isSelected ? " is-selected" : ""}`}
       type="button"
       onClick={onSelect}
-      initial={{ opacity: 0, y: 52, filter: "blur(12px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 52 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 1, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -10 }}
@@ -981,8 +1173,8 @@ function SearchExperience({ activeMode, onModeChange }) {
       <div className="search-transition" aria-hidden="true" />
       <motion.div
         className="search-shell"
-        initial={{ opacity: 0, y: 46, filter: "blur(12px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 46 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10% 0px" }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -1059,8 +1251,8 @@ function SearchModeSection({
       ].filter(Boolean).join(" ")}
       id={`search-${modeKey}`}
       data-mode={modeKey}
-      initial={{ opacity: 0, y: 34, filter: "blur(12px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 34 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-12% 0px" }}
       transition={{ duration: 0.78, ease: [0.16, 1, 0.3, 1] }}
     >
@@ -1346,8 +1538,8 @@ function FeaturedPropertiesSection() {
       <div className="featured-transition" aria-hidden="true" />
       <motion.div
         className="featured-header"
-        initial={{ opacity: 0, y: 42, filter: "blur(12px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 42 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -1402,7 +1594,7 @@ function MeetYairoSection() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const portraitY = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [-24, 28]);
+  const portraitY = useTransform(scrollYProgress, [0, 1], reduceMotion ? [0, 0] : [12, 46]);
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -1423,8 +1615,8 @@ function MeetYairoSection() {
     <section ref={sectionRef} id="meet-yairo" className="meet-yairo-section">
       <motion.div
         className="meet-yairo-media"
-        initial={{ opacity: 0, y: 48, filter: "blur(14px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -1438,8 +1630,8 @@ function MeetYairoSection() {
 
       <motion.div
         className="meet-yairo-copy"
-        initial={{ opacity: 0, y: 42, filter: "blur(12px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 42 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 0.9, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -1452,10 +1644,9 @@ function MeetYairoSection() {
 
         <div className="meet-yairo-metrics" aria-label="Yairo Rincon advisory metrics">
           {[
-            ["10+", "Years of Experience"],
-            ["150+", "Private Transactions"],
-            ["$120M+", "Sales Volume"],
-            ["Global", "International Clientele"],
+            ["7", "Years of Experience"],
+            ["100+", "Private Transactions"],
+            ["$50M+", "Sales Volume"],
           ].map(([value, label]) => (
             <div key={label}>
               <strong>{value}</strong>
@@ -1498,6 +1689,7 @@ function YairoProfilePanel({ onClose }) {
   return (
     <motion.div
       className="yairo-panel-backdrop"
+      onClick={onClose}
       onWheel={(event) => event.preventDefault()}
       onTouchMove={(event) => event.preventDefault()}
       initial={{ opacity: 0 }}
@@ -1510,15 +1702,16 @@ function YairoProfilePanel({ onClose }) {
         data-lenis-prevent
         role="dialog"
         aria-modal="true"
-        initial={{ x: "100%", filter: "blur(8px)" }}
-        animate={{ x: 0, filter: "blur(0px)" }}
-        exit={{ x: "100%", filter: "blur(8px)" }}
+        initial={{ x: "100%" }}
+        animate={{ x: 0 }}
+        exit={{ x: "100%" }}
         transition={{ duration: 0.82, ease: [0.77, 0, 0.175, 1] }}
         aria-label="Yairo Rincon expanded profile"
+        onClick={(event) => event.stopPropagation()}
         onWheel={(event) => event.stopPropagation()}
         onTouchMove={(event) => event.stopPropagation()}
       >
-        <button className="yairo-panel-close" type="button" onClick={onClose}>
+        <button className="yairo-panel-close" type="button" onClick={onClose} aria-label="Close Yairo profile">
           Close
         </button>
 
@@ -1540,24 +1733,41 @@ function YairoProfilePanel({ onClose }) {
           <div>
             <span>Private Advisor</span>
             <h2>Yairo Rincon</h2>
-            <p>Miami real estate guidance shaped by access, discretion, and local perspective.</p>
+            <p>
+              South Florida real estate advisor specializing in homes, waterfront estates,
+              and investment properties across Broward and Miami-Dade.
+            </p>
           </div>
         </div>
 
         <div id="yairo-panel-approach" className="yairo-panel-story">
-          <section>
+          <section className="is-wide">
             <span>Biography</span>
             <p>
-              Yairo works with clients who value clarity, privacy, and careful timing.
-              His role is to read the market, understand the person, and help make
-              residential decisions with fewer distractions.
+              Fluent in English, Spanish, and Portuguese, Yairo Rincon is a South Florida real estate advisor
+              specializing in luxury homes, waterfront estates, and investment properties across Broward and Miami-Dade.
+            </p>
+            <p>
+              Known for his cinematic marketing style, strategic negotiation, and white-glove service,
+              Yairo combines high-end visual storytelling with data-driven expertise to position every
+              property at its maximum potential.
+            </p>
+            <p>
+              From luxury lifestyle campaigns to targeted global exposure, his approach is designed to
+              create attention, elevate perception, and deliver results for buyers, sellers, and investors alike.
             </p>
           </section>
-          <section>
-            <span>Advisory Approach</span>
+          <section className="is-wide">
+            <span>South Florida Focus</span>
             <p>
-              Each engagement begins with context: intent, timeline, lifestyle,
-              property condition, and risk. The work is measured before it becomes visible.
+              From exclusive waterfront homes in Lauderdale by the Sea to luxury communities in Parkland,
+              Miami Beach, and Coral Gables, Yairo delivers a white glove experience built around discretion,
+              communication, and results.
+            </p>
+            <p>
+              His global marketing reach, strong network of attorneys, lenders, and title professionals,
+              and multilingual background allow him to connect with both local and international buyers
+              seeking South Florida real estate opportunities.
             </p>
           </section>
         </div>
@@ -1596,6 +1806,31 @@ function YairoProfilePanel({ onClose }) {
   );
 }
 
+function AreasWeServeSection() {
+  return (
+    <section className="areas-we-serve" aria-label="Areas Yairo Rincon serves">
+      <motion.span
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-12% 0px" }}
+        transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
+      >
+        The areas we serve
+      </motion.span>
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-12% 0px" }}
+        transition={{ duration: 0.86, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {serviceAreas.map((area) => (
+          <strong key={area}>{area}</strong>
+        ))}
+      </motion.div>
+    </section>
+  );
+}
+
 function ValuationSection() {
   const [homePrice, setHomePrice] = useState(1800000);
   const [downPayment, setDownPayment] = useState(360000);
@@ -1617,8 +1852,8 @@ function ValuationSection() {
     <section id="valuation" className="valuation-section">
       <motion.div
         className="valuation-heading"
-        initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 34 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 0.86, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -1761,8 +1996,8 @@ function ListingsPageSection({ standalone = false }) {
     >
       <motion.div
         className="listings-hero"
-        initial={{ opacity: 0, y: 42, filter: "blur(14px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 42 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-14% 0px" }}
         transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -1886,8 +2121,8 @@ function MiamiNeighborhoodsSection() {
     <section className="neighborhoods-section" aria-label="Explore Miami neighborhoods">
       <motion.div
         className="neighborhoods-header"
-        initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
-        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        initial={{ opacity: 0, y: 34 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-12% 0px" }}
         transition={{ duration: 0.86, ease: [0.16, 1, 0.3, 1] }}
       >
@@ -1903,8 +2138,8 @@ function MiamiNeighborhoodsSection() {
           <motion.article
             key={neighborhood.title}
             className="neighborhood-block"
-            initial={{ opacity: 0, y: 46, filter: "blur(12px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 46 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-12% 0px" }}
             transition={{ duration: 0.92, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
           >
@@ -1950,9 +2185,9 @@ function MiamiNeighborhoodsSection() {
                         {isOpen && (
                           <motion.div
                             className="neighborhood-panel-body"
-                            initial={{ height: 0, opacity: 0, filter: "blur(8px)" }}
-                            animate={{ height: "auto", opacity: 1, filter: "blur(0px)" }}
-                            exit={{ height: 0, opacity: 0, filter: "blur(8px)" }}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
                           >
                             <p>{panel.note}</p>
@@ -2044,6 +2279,114 @@ function NeighborhoodIcon({ type }) {
   );
 }
 
+function JournalExperience() {
+  const featuredArticle = journalArticles.find((article) => article.featured) || journalArticles[0];
+  const feedArticles = journalArticles.filter((article) => article !== featuredArticle);
+  const [expandedArticles, setExpandedArticles] = useState({});
+  const toggleArticle = (title) => {
+    setExpandedArticles((current) => ({
+      ...current,
+      [title]: !current[title],
+    }));
+  };
+
+  return (
+    <section className="journal-page" aria-label="Yairo Rincon editorial journal">
+      <motion.article
+        className={expandedArticles[featuredArticle.title] ? "journal-feature is-expanded" : "journal-feature"}
+        initial={{ opacity: 0, y: 44 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <JournalArticleImage article={featuredArticle} large />
+        <div className="journal-feature-copy">
+          <span>{featuredArticle.category}</span>
+          <h1>{featuredArticle.title}</h1>
+          <p>{featuredArticle.description}</p>
+          <button
+            className="journal-read-more"
+            type="button"
+            onClick={() => toggleArticle(featuredArticle.title)}
+          >
+            {expandedArticles[featuredArticle.title] ? "Close Article" : "Read More"}
+          </button>
+          <AnimatePresence initial={false}>
+            {expandedArticles[featuredArticle.title] && (
+              <motion.div
+                className="journal-expanded-copy"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.62, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {featuredArticle.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.article>
+
+      <div className="journal-feed-header">
+        <span>Yairo Rincon Journal</span>
+        <p>Residential perspective, lifestyle context, and market intelligence for South Florida decisions.</p>
+      </div>
+
+      <div className="journal-feed">
+        {feedArticles.map((article, index) => (
+          <motion.article
+            key={article.title}
+            className={expandedArticles[article.title] ? "journal-feed-item is-expanded" : "journal-feed-item"}
+            initial={{ opacity: 0, y: 34 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-12% 0px" }}
+            transition={{ duration: 0.78, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <JournalArticleImage article={article} />
+            <div>
+              <span>{article.category}</span>
+              <h2>{article.title}</h2>
+              <p>{article.description}</p>
+              <button
+                className="journal-read-more"
+                type="button"
+                onClick={() => toggleArticle(article.title)}
+              >
+                {expandedArticles[article.title] ? "Close Article" : "Read More"}
+              </button>
+              <AnimatePresence initial={false}>
+                {expandedArticles[article.title] && (
+                  <motion.div
+                    className="journal-expanded-copy"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.58, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {article.body.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function JournalArticleImage({ article, large = false }) {
+  return (
+    <div className={large ? "editorial-art is-large" : "editorial-art"}>
+      <img src={article.image} alt={article.title} loading={large ? "eager" : "lazy"} decoding="async" />
+      <span>{article.category}</span>
+    </div>
+  );
+}
+
 function ListingResultCard({ listing, index, isActive, onFocus }) {
   return (
     <motion.article
@@ -2051,8 +2394,8 @@ function ListingResultCard({ listing, index, isActive, onFocus }) {
       onMouseEnter={onFocus}
       onFocus={onFocus}
       tabIndex={0}
-      initial={{ opacity: 0, y: 42, filter: "blur(12px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 42 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.86, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
     >
@@ -2102,8 +2445,8 @@ function PropertyDetailExperience({ property }) {
         <div className="property-hero-shade" />
         <motion.div
           className="property-hero-content"
-          initial={{ opacity: 0, y: 44, filter: "blur(14px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 44 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
         >
           <span>{property.marketPosition}</span>
@@ -2136,8 +2479,8 @@ function PropertyDetailExperience({ property }) {
 
       <section className="property-narrative">
         <motion.div
-          initial={{ opacity: 0, y: 34, filter: "blur(10px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 34 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-12% 0px" }}
           transition={{ duration: 0.86, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -2165,9 +2508,9 @@ function PropertyDetailExperience({ property }) {
             <motion.img
               src={activeImage}
               alt=""
-              initial={{ scale: 0.94, filter: "blur(10px)" }}
-              animate={{ scale: 1, filter: "blur(0px)" }}
-              exit={{ scale: 0.96, filter: "blur(8px)" }}
+              initial={{ scale: 0.94 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.96 }}
               transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
             />
             <span>Close</span>
@@ -2270,7 +2613,7 @@ function ConciergeInquiry({ property }) {
       <div className="concierge-actions">
         <input aria-label="Name" placeholder="Name" />
         <input aria-label="Phone or email" placeholder="Phone or email" />
-        <MagneticAnchor href="mailto:private@yairorincon.com" strength={0.18}>
+        <MagneticAnchor href="https://wa.me/19548420980" target="_blank" rel="noreferrer" strength={0.18}>
           Request Private Showing
         </MagneticAnchor>
       </div>
@@ -2302,9 +2645,9 @@ function LuxuryMap({ listings, activeListing, onActivate }) {
           <motion.div
             key={activeListing.id}
             className="map-preview"
-            initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -12, filter: "blur(8px)" }}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
           >
             <img src={activeListing.image} alt="" />
@@ -2324,8 +2667,8 @@ function FeaturedPropertyCard({ property, index }) {
   return (
     <motion.article
       className="property-card"
-      initial={{ opacity: 0, y: 54, filter: "blur(14px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 54 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10% 0px" }}
       transition={{ duration: 0.95, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
     >

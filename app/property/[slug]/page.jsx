@@ -6,7 +6,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
-  const listing = getListingBySlug(params.slug);
+  const { slug } = await params;
+  const listing = getListingBySlug(slug);
 
   return {
     title: listing ? `${listing.title} | Yairo Rincon Properties` : "Private Residence | Yairo Rincon Properties",

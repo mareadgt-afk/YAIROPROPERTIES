@@ -1,6 +1,6 @@
 import { LuxuryButton } from "../ui/LuxuryButton.jsx";
 
-export function ConciergeCTA({ title = "Request Private Advisory", body, href = "mailto:private@yairorincon.com" }) {
+export function ConciergeCTA({ title = "Request Private Advisory", body, href = "https://wa.me/19548420980" }) {
   return (
     <section className="concierge-cta-shell">
       <div>
