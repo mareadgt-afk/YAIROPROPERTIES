@@ -877,7 +877,6 @@ function PrimaryNav({ tone = "light" }) {
     <motion.nav
       className={[
         "navbar",
-        "listings-navbar",
         "primary-nav",
         `nav-${tone}`,
         isScrolled ? "is-scrolled" : "",

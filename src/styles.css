@@ -364,6 +364,32 @@ button {
   backdrop-filter: blur(22px);
 }
 
+.primary-nav.nav-dark {
+  border-color: rgba(246, 244, 239, 0.1);
+  background:
+    linear-gradient(180deg, rgba(5, 5, 5, 0.82), rgba(5, 5, 5, 0.44) 66%, rgba(5, 5, 5, 0.16));
+  color: var(--yr-white);
+}
+
+.primary-nav.nav-dark .brand img {
+  filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.58));
+}
+
+.primary-nav.nav-dark .nav-links,
+.primary-nav.nav-dark .nav-action {
+  color: rgba(246, 244, 239, 0.74);
+}
+
+.primary-nav.nav-dark .nav-action {
+  border-color: rgba(246, 244, 239, 0.32);
+  background: rgba(246, 244, 239, 0.04);
+}
+
+.primary-nav.nav-dark .nav-links a:hover,
+.primary-nav.nav-dark .nav-action:hover {
+  color: #ffffff;
+}
+
 .primary-nav.nav-light {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.82) 66%, rgba(255, 255, 255, 0.46));
   color: #080908;
