@@ -12,6 +12,9 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const VIDEO_DURATION_MS = 6200;
+const WHATSAPP_NUMBER = "19548420980";
+const whatsappUrl = (message = "Hi Yairo, I would like to connect.") =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 const PRICE_STOPS = [
   { pos: 0, value: 100000 },
   { pos: 35, value: 2000000 },
@@ -675,6 +678,7 @@ export function YairoHero() {
       <CustomCursor />
       <FloatingWhatsApp />
       <PrimaryNav tone="dark" />
+      <LeadCapturePopup />
 
       <AnimatePresence>
         {!isLoaded && (
@@ -787,7 +791,7 @@ export function YairoHero() {
           </motion.p>
           <MagneticAnchor
             className="cta"
-            href="https://wa.me/19548420980"
+            href={whatsappUrl("Hi Yairo, I visited your website and would like to connect.")}
             target="_blank"
             rel="noreferrer"
             strength={0.28}
@@ -840,6 +844,7 @@ export function ListingsPage() {
       <CustomCursor />
       <FloatingWhatsApp />
       <PrimaryNav tone="light" />
+      <LeadCapturePopup />
       <ListingsPageSection standalone />
       <SiteFooter />
     </main>
@@ -852,6 +857,7 @@ export function PropertyDetailPage() {
       <CustomCursor />
       <FloatingWhatsApp />
       <PrimaryNav tone="dark" />
+      <LeadCapturePopup />
       <PropertyDetailExperience property={propertyDetail} />
       <SiteFooter />
     </main>
@@ -864,6 +870,7 @@ export function JournalPage() {
       <CustomCursor />
       <FloatingWhatsApp />
       <PrimaryNav tone="light" />
+      <LeadCapturePopup />
       <JournalExperience />
       <SiteFooter />
     </main>
@@ -896,7 +903,7 @@ function PrimaryNav({ tone = "light" }) {
       </div>
       <MagneticAnchor
         className="nav-action"
-        href="https://wa.me/19548420980"
+        href={whatsappUrl("Hi Yairo, I would like private access to discuss South Florida real estate.")}
         target="_blank"
         rel="noreferrer"
         strength={0.18}
@@ -924,7 +931,7 @@ function FloatingWhatsApp() {
   return (
     <motion.a
       className="floating-whatsapp"
-      href="https://wa.me/19548420980"
+      href={whatsappUrl("Hi Yairo, I would like to connect.")}
       target="_blank"
       rel="noreferrer"
       aria-label="Open WhatsApp conversation with Yairo Properties"
@@ -937,6 +944,94 @@ function FloatingWhatsApp() {
       <img src="/whatsapp-button.png" alt="" loading="eager" decoding="async" />
       <i />
     </motion.a>
+  );
+}
+
+function LeadCapturePopup() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    if (window.sessionStorage.getItem("yairoLeadPopupDismissed") === "true") return undefined;
+
+    const timer = window.setTimeout(() => {
+      setIsVisible(true);
+    }, 10000);
+
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  const closePopup = () => {
+    window.sessionStorage.setItem("yairoLeadPopupDismissed", "true");
+    setIsVisible(false);
+  };
+
+  const submitLead = (event) => {
+    event.preventDefault();
+    const message = [
+      "Hi Yairo, I am looking for guidance with my home search.",
+      name ? `Name: ${name}` : "",
+      phone ? `WhatsApp: ${phone}` : "",
+      "I would like help finding the right home in South Florida.",
+    ].filter(Boolean).join("\n");
+
+    window.sessionStorage.setItem("yairoLeadPopupDismissed", "true");
+    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+    setIsVisible(false);
+  };
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          className="lead-popup-backdrop"
+          role="presentation"
+          onClick={closePopup}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.aside
+            className="lead-popup"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Yairo Rincon personal home search invitation"
+            onClick={(event) => event.stopPropagation()}
+            initial={{ opacity: 0, y: 36, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.98 }}
+            transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <button className="lead-popup-close" type="button" onClick={closePopup} aria-label="Close invitation">
+              Close
+            </button>
+            <div className="lead-popup-media">
+              <img src="/yairo-portrait-studio.jpeg" alt="Yairo Rincon" loading="lazy" decoding="async" />
+            </div>
+            <form className="lead-popup-copy" onSubmit={submitLead}>
+              <span>Personal Guidance</span>
+              <h2>Can I help you find the right home?</h2>
+              <p>
+                Tell me your name and WhatsApp. I will personally help you understand the best options
+                for your timing, lifestyle, and next move.
+              </p>
+              <label>
+                <span>Name</span>
+                <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Your name" required />
+              </label>
+              <label>
+                <span>WhatsApp</span>
+                <input value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="+1 954..." required />
+              </label>
+              <button type="submit">Send to WhatsApp</button>
+            </form>
+          </motion.aside>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -966,7 +1061,7 @@ function SiteFooter() {
           <MagneticAnchor href="https://yairoproperties.com" strength={0.1}>
             yairoproperties.com
           </MagneticAnchor>
-          <MagneticAnchor href="https://wa.me/19548420980" target="_blank" rel="noreferrer" strength={0.1}>
+          <MagneticAnchor href={whatsappUrl("Hi Yairo, I would like to connect by WhatsApp.")} target="_blank" rel="noreferrer" strength={0.1}>
             +1 954 842 0980
           </MagneticAnchor>
           <MagneticAnchor
@@ -1159,6 +1254,13 @@ function SearchExperience({ activeMode, onModeChange }) {
     setLoading(true);
     window.setTimeout(() => setLoading(false), 1150);
     setActiveSection(modeKey);
+    if (modeKey === "sell") {
+      window.open(
+        whatsappUrl("Hi Yairo, I would like to request a free home valuation."),
+        "_blank",
+        "noopener,noreferrer",
+      );
+    }
   };
 
   return (
@@ -1885,7 +1987,13 @@ function ValuationSection() {
             <span>Phone or Email</span>
             <input placeholder="Preferred contact" />
           </label>
-          <MagneticAnchor className="valuation-submit" href="/#connect" strength={0.18}>
+          <MagneticAnchor
+            className="valuation-submit"
+            href={whatsappUrl("Hi Yairo, I would like to request a free valuation for my home.")}
+            target="_blank"
+            rel="noreferrer"
+            strength={0.18}
+          >
             Request Free Valuation
           </MagneticAnchor>
         </motion.div>
@@ -2028,7 +2136,14 @@ function ListingsPageSection({ standalone = false }) {
           <div className="listings-hero-actions">
             <MagneticAnchor href="#listing-results" strength={0.18}>View Listings</MagneticAnchor>
             <MagneticAnchor href="#listings-map" strength={0.18}>Explore Map</MagneticAnchor>
-            <MagneticAnchor href="/#connect" strength={0.18}>Private Advisory</MagneticAnchor>
+            <MagneticAnchor
+              href={whatsappUrl("Hi Yairo, I would like private advisory for Miami and South Florida real estate.")}
+              target="_blank"
+              rel="noreferrer"
+              strength={0.18}
+            >
+              Private Advisory
+            </MagneticAnchor>
           </div>
         </div>
       </motion.div>
