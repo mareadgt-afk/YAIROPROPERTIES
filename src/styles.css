@@ -4984,6 +4984,7 @@ html.is-cursor-pressed .luxury-cursor-ring {
 
   .hero {
     min-height: 100svh;
+    align-items: start;
   }
 
   .hero::after {
@@ -4991,15 +4992,19 @@ html.is-cursor-pressed .luxury-cursor-ring {
   }
 
   .navbar {
-    min-height: 84px;
+    min-height: 76px;
     grid-template-columns: auto 1fr;
-    padding: 0 22px;
+    padding: 0 18px;
+  }
+
+  .brand {
+    width: 96px;
   }
 
   .nav-links {
     display: flex;
     justify-self: end;
-    gap: 18px;
+    gap: 16px;
     font-size: 9px;
     letter-spacing: 0.16em;
   }
@@ -5014,11 +5019,16 @@ html.is-cursor-pressed .luxury-cursor-ring {
 
   .floating-whatsapp {
     top: auto;
-    bottom: 24px;
-    left: 18px;
-    width: 48px;
-    height: 48px;
+    bottom: 92px;
+    left: 22px;
+    width: 44px;
+    height: 44px;
     transform: none;
+  }
+
+  .floating-whatsapp img {
+    width: 24px;
+    height: 24px;
   }
 
   .lead-popup {
@@ -5045,18 +5055,32 @@ html.is-cursor-pressed .luxury-cursor-ring {
 
   .hero-content {
     width: min(100% - 36px, 560px);
-    padding-bottom: 36px;
+    margin-top: clamp(132px, 20svh, 176px);
+    padding-bottom: 0;
+    align-self: start;
   }
 
   h1 {
-    max-width: 9.5ch;
-    font-size: clamp(54px, 15.6vw, 82px);
-    line-height: 0.92;
+    max-width: min(8.2ch, 100%);
+    font-size: clamp(50px, 14.2vw, 72px);
+    line-height: 0.9;
+  }
+
+  h1 em {
+    font-size: 0.82em;
+  }
+
+  .hero-subline {
+    max-width: 320px;
+    margin-top: 28px;
+    font-size: 15px;
+    line-height: 1.55;
   }
 
   .cta {
-    width: min(100%, 280px);
-    margin-top: 42px;
+    width: min(100%, 292px);
+    min-height: 56px;
+    margin-top: 44px;
   }
 
   .scroll-indicator {
@@ -5577,11 +5601,38 @@ html.is-cursor-pressed .luxury-cursor-ring {
   }
 
   .brand {
-    width: 122px;
+    width: 92px;
+  }
+
+  .navbar {
+    min-height: 74px;
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .nav-links {
+    gap: 14px;
+    font-size: 8px;
+    letter-spacing: 0.14em;
   }
 
   h1 {
-    font-size: clamp(50px, 15vw, 68px);
+    max-width: 8ch;
+    font-size: clamp(44px, 13.2vw, 60px);
+  }
+
+  .hero-content {
+    margin-top: clamp(122px, 18svh, 150px);
+  }
+
+  .hero-subline {
+    max-width: 300px;
+    font-size: 14px;
+  }
+
+  .cta {
+    width: min(100%, 270px);
+    margin-top: 38px;
   }
 
   .experience-section {
