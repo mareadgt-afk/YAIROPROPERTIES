@@ -1076,8 +1076,13 @@ function SiteFooter() {
         </div>
 
         <div className="footer-bottom">
-          <span>© 2026 Yairo Properties</span>
-          <span>Miami / Broward / Palm Beach</span>
+          <span>© 2026 Yairo Properties. All rights reserved.</span>
+          <span>
+            Made with love by{" "}
+            <MagneticAnchor href="https://wearemarea.co" target="_blank" rel="noreferrer" strength={0.08}>
+              wearemarea
+            </MagneticAnchor>
+          </span>
         </div>
       </div>
     </footer>

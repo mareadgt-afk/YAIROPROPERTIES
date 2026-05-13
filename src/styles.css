@@ -4742,6 +4742,16 @@ h1 em {
   letter-spacing: 0.18em;
 }
 
+.footer-bottom a {
+  color: rgba(246, 244, 239, 0.66);
+  text-decoration: none;
+  transition: color 420ms var(--yr-ease);
+}
+
+.footer-bottom a:hover {
+  color: #ffffff;
+}
+
 .property-lightbox {
   position: fixed;
   inset: 0;
