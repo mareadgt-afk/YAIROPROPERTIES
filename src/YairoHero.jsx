@@ -17,7 +17,7 @@ const DISPLAY_PHONE_NUMBER = "+1 954 842 0980";
 const whatsappUrl = (message = "Hi Yairo, I would like to connect.") =>
   `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
 const messageUrl = (message = "Hi Yairo, I would like to connect.") =>
-  `sms:+${PHONE_NUMBER}?&body=${encodeURIComponent(message)}`;
+  `sms:+${PHONE_NUMBER}&body=${encodeURIComponent(message)}`;
 const PRICE_STOPS = [
   { pos: 0, value: 100000 },
   { pos: 35, value: 2000000 },
