@@ -4744,7 +4744,10 @@ h1 em {
 
 .footer-bottom a {
   color: rgba(246, 244, 239, 0.66);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: rgba(200, 185, 141, 0.42);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
   transition: color 420ms var(--yr-ease);
 }
 

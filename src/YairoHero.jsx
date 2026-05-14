@@ -12,9 +12,12 @@ import {
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const VIDEO_DURATION_MS = 6200;
-const WHATSAPP_NUMBER = "19548420980";
+const PHONE_NUMBER = "19548420980";
+const DISPLAY_PHONE_NUMBER = "+1 954 842 0980";
 const whatsappUrl = (message = "Hi Yairo, I would like to connect.") =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+const messageUrl = (message = "Hi Yairo, I would like to connect.") =>
+  `sms:+${PHONE_NUMBER}?&body=${encodeURIComponent(message)}`;
 const PRICE_STOPS = [
   { pos: 0, value: 100000 },
   { pos: 35, value: 2000000 },
@@ -791,7 +794,7 @@ export function YairoHero() {
           </motion.p>
           <MagneticAnchor
             className="cta"
-            href={whatsappUrl("Hi Yairo, I visited your website and would like to connect.")}
+            href={messageUrl("Hi Yairo, I visited your website and would like to connect.")}
             target="_blank"
             rel="noreferrer"
             strength={0.28}
@@ -903,7 +906,7 @@ function PrimaryNav({ tone = "light" }) {
       </div>
       <MagneticAnchor
         className="nav-action"
-        href={whatsappUrl("Hi Yairo, I would like private access to discuss South Florida real estate.")}
+        href={messageUrl("Hi Yairo, I would like private access to discuss South Florida real estate.")}
         target="_blank"
         rel="noreferrer"
         strength={0.18}
@@ -973,12 +976,12 @@ function LeadCapturePopup() {
     const message = [
       "Hi Yairo, I am looking for guidance with my home search.",
       name ? `Name: ${name}` : "",
-      phone ? `WhatsApp: ${phone}` : "",
+      phone ? `Phone: ${phone}` : "",
       "I would like help finding the right home in South Florida.",
     ].filter(Boolean).join("\n");
 
     window.sessionStorage.setItem("yairoLeadPopupDismissed", "true");
-    window.open(whatsappUrl(message), "_blank", "noopener,noreferrer");
+    window.open(messageUrl(message), "_blank", "noopener,noreferrer");
     setIsVisible(false);
   };
 
@@ -1015,18 +1018,18 @@ function LeadCapturePopup() {
               <span>Personal Guidance</span>
               <h2>Can I help you find the right home?</h2>
               <p>
-                Tell me your name and WhatsApp. I will personally help you understand the best options
-                for your timing, lifestyle, and next move.
+                Tell me your name and the best number to reach you. I will personally help you understand
+                the best options for your timing, lifestyle, and next move.
               </p>
               <label>
                 <span>Name</span>
                 <input value={name} onChange={(event) => setName(event.target.value)} placeholder="Your name" required />
               </label>
               <label>
-                <span>WhatsApp</span>
+                <span>Phone</span>
                 <input value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="+1 954..." required />
               </label>
-              <button type="submit">Send to WhatsApp</button>
+              <button type="submit">Send a Message</button>
             </form>
           </motion.aside>
         </motion.div>
@@ -1061,8 +1064,8 @@ function SiteFooter() {
           <MagneticAnchor href="https://yairoproperties.com" strength={0.1}>
             yairoproperties.com
           </MagneticAnchor>
-          <MagneticAnchor href={whatsappUrl("Hi Yairo, I would like to connect by WhatsApp.")} target="_blank" rel="noreferrer" strength={0.1}>
-            +1 954 842 0980
+          <MagneticAnchor href={messageUrl("Hi Yairo, I would like to connect by message.")} target="_blank" rel="noreferrer" strength={0.1}>
+            {DISPLAY_PHONE_NUMBER}
           </MagneticAnchor>
           <MagneticAnchor
             href="https://www.google.com/maps/search/?api=1&query=201%20N%20University%20Dr%20%23105%2C%20Plantation%2C%20FL%2033324"
@@ -1080,7 +1083,7 @@ function SiteFooter() {
           <span>
             Made with love by{" "}
             <MagneticAnchor href="https://wearemarea.co" target="_blank" rel="noreferrer" strength={0.08}>
-              wearemarea
+              wearemarea🌊
             </MagneticAnchor>
           </span>
         </div>
@@ -1261,7 +1264,7 @@ function SearchExperience({ activeMode, onModeChange }) {
     setActiveSection(modeKey);
     if (modeKey === "sell") {
       window.open(
-        whatsappUrl("Hi Yairo, I would like to request a free home valuation."),
+        messageUrl("Hi Yairo, I would like to request a free home valuation."),
         "_blank",
         "noopener,noreferrer",
       );
@@ -1994,7 +1997,7 @@ function ValuationSection() {
           </label>
           <MagneticAnchor
             className="valuation-submit"
-            href={whatsappUrl("Hi Yairo, I would like to request a free valuation for my home.")}
+            href={messageUrl("Hi Yairo, I would like to request a free valuation for my home.")}
             target="_blank"
             rel="noreferrer"
             strength={0.18}
@@ -2142,7 +2145,7 @@ function ListingsPageSection({ standalone = false }) {
             <MagneticAnchor href="#listing-results" strength={0.18}>View Listings</MagneticAnchor>
             <MagneticAnchor href="#listings-map" strength={0.18}>Explore Map</MagneticAnchor>
             <MagneticAnchor
-              href={whatsappUrl("Hi Yairo, I would like private advisory for Miami and South Florida real estate.")}
+              href={messageUrl("Hi Yairo, I would like private advisory for Miami and South Florida real estate.")}
               target="_blank"
               rel="noreferrer"
               strength={0.18}
@@ -2732,7 +2735,12 @@ function ConciergeInquiry({ property }) {
       <div className="concierge-actions">
         <input aria-label="Name" placeholder="Name" />
         <input aria-label="Phone or email" placeholder="Phone or email" />
-        <MagneticAnchor href="https://wa.me/19548420980" target="_blank" rel="noreferrer" strength={0.18}>
+        <MagneticAnchor
+          href={messageUrl(`Hi Yairo, I would like to request a private showing for ${property.address}.`)}
+          target="_blank"
+          rel="noreferrer"
+          strength={0.18}
+        >
           Request Private Showing
         </MagneticAnchor>
       </div>
