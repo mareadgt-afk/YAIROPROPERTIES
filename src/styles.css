@@ -4684,6 +4684,31 @@ h1 em {
   filter: drop-shadow(0 14px 34px rgba(0, 0, 0, 0.38));
 }
 
+.footer-affiliate-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.footer-affiliate-logos img {
+  width: auto;
+  max-width: min(148px, 34vw);
+  max-height: 48px;
+  object-fit: contain;
+  opacity: 0.82;
+  filter:
+    saturate(0.82)
+    contrast(1.04)
+    drop-shadow(0 12px 26px rgba(0, 0, 0, 0.34));
+}
+
+.footer-affiliate-logos img:first-child {
+  max-width: min(92px, 24vw);
+  max-height: 54px;
+}
+
 .footer-brand-block p {
   max-width: 430px;
   margin: 0;

@@ -1040,6 +1040,10 @@ function SiteFooter() {
       <div className="footer-inner">
         <div className="footer-brand-block">
           <img src="/yairo-logo.png" alt="Yairo Properties" loading="lazy" decoding="async" />
+          <div className="footer-affiliate-logos" aria-label="Yairo Properties affiliations">
+            <img src="/lifestyle-group-logo.jpeg" alt="Lifestyle Group" loading="lazy" decoding="async" />
+            <img src="/lifestyle-international-realty-logo.jpeg" alt="Lifestyle International Realty" loading="lazy" decoding="async" />
+          </div>
           <p>
             Residential guidance for buying, leasing, selling, and evaluating property
             across Miami, Broward, and South Florida.
