@@ -795,8 +795,6 @@ export function YairoHero() {
           <MagneticAnchor
             className="cta"
             href={messageUrl("Hi Yairo, I visited your website and would like to connect.")}
-            target="_blank"
-            rel="noreferrer"
             strength={0.28}
           >
             <span>Let's Connect</span>
@@ -907,8 +905,6 @@ function PrimaryNav({ tone = "light" }) {
       <MagneticAnchor
         className="nav-action"
         href={messageUrl("Hi Yairo, I would like private access to discuss South Florida real estate.")}
-        target="_blank"
-        rel="noreferrer"
         strength={0.18}
       >
         Private Access
@@ -981,7 +977,7 @@ function LeadCapturePopup() {
     ].filter(Boolean).join("\n");
 
     window.sessionStorage.setItem("yairoLeadPopupDismissed", "true");
-    window.open(messageUrl(message), "_blank", "noopener,noreferrer");
+    window.location.href = messageUrl(message);
     setIsVisible(false);
   };
 
@@ -1064,7 +1060,7 @@ function SiteFooter() {
           <MagneticAnchor href="https://yairoproperties.com" strength={0.1}>
             yairoproperties.com
           </MagneticAnchor>
-          <MagneticAnchor href={messageUrl("Hi Yairo, I would like to connect by message.")} target="_blank" rel="noreferrer" strength={0.1}>
+          <MagneticAnchor href={messageUrl("Hi Yairo, I would like to connect by message.")} strength={0.1}>
             {DISPLAY_PHONE_NUMBER}
           </MagneticAnchor>
           <MagneticAnchor
@@ -1998,8 +1994,6 @@ function ValuationSection() {
           <MagneticAnchor
             className="valuation-submit"
             href={messageUrl("Hi Yairo, I would like to request a free valuation for my home.")}
-            target="_blank"
-            rel="noreferrer"
             strength={0.18}
           >
             Request Free Valuation
@@ -2146,8 +2140,6 @@ function ListingsPageSection({ standalone = false }) {
             <MagneticAnchor href="#listings-map" strength={0.18}>Explore Map</MagneticAnchor>
             <MagneticAnchor
               href={messageUrl("Hi Yairo, I would like private advisory for Miami and South Florida real estate.")}
-              target="_blank"
-              rel="noreferrer"
               strength={0.18}
             >
               Private Advisory
@@ -2737,8 +2729,6 @@ function ConciergeInquiry({ property }) {
         <input aria-label="Phone or email" placeholder="Phone or email" />
         <MagneticAnchor
           href={messageUrl(`Hi Yairo, I would like to request a private showing for ${property.address}.`)}
-          target="_blank"
-          rel="noreferrer"
           strength={0.18}
         >
           Request Private Showing
