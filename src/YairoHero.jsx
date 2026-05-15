@@ -894,9 +894,15 @@ function PrimaryNav({ tone = "light" }) {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       aria-label="Primary navigation"
     >
-      <MagneticAnchor className="brand" href="/" aria-label="Yairo Rincon home" strength={0.12}>
-        <img src="/yairo-logo.png" alt="Yairo Properties" />
-      </MagneticAnchor>
+      <div className="brand-cluster">
+        <MagneticAnchor className="brand" href="/" aria-label="Yairo Rincon home" strength={0.12}>
+          <img src="/yairo-logo.png" alt="Yairo Properties" />
+        </MagneticAnchor>
+        <span className="brand-divider" aria-hidden="true" />
+        <MagneticAnchor className="brand-partner" href="/" aria-label="Lifestyle International Realty" strength={0.08}>
+          <img src="/lifestyle-header-logo.png" alt="Lifestyle International Realty" />
+        </MagneticAnchor>
+      </div>
       <div className="nav-links">
         <MagneticAnchor href="/" strength={0.16}>Home</MagneticAnchor>
         <MagneticAnchor href="/listings" strength={0.16}>Listings</MagneticAnchor>

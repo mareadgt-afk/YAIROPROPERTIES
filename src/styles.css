@@ -175,21 +175,44 @@ button {
   will-change: transform, opacity;
 }
 
-.brand {
+.brand-cluster {
   display: inline-flex;
-  width: clamp(136px, 11vw, 178px);
+  width: fit-content;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 20px);
+}
+
+.brand,
+.brand-partner {
+  display: inline-flex;
   align-items: center;
   transition: opacity 520ms var(--yr-ease), transform 520ms var(--yr-ease);
 }
 
-.brand img {
+.brand {
+  width: clamp(136px, 11vw, 178px);
+}
+
+.brand-partner {
+  width: clamp(104px, 8.8vw, 146px);
+}
+
+.brand img,
+.brand-partner img {
   display: block;
   width: 100%;
   height: auto;
   filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.58));
 }
 
-.brand:hover {
+.brand-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(246, 244, 239, 0.16);
+}
+
+.brand:hover,
+.brand-partner:hover {
   opacity: 0.82;
 }
 
@@ -480,7 +503,8 @@ button {
   color: #080908;
 }
 
-.listings-navbar .brand img {
+.listings-navbar .brand img,
+.listings-navbar .brand-partner img {
   filter: invert(1) drop-shadow(0 14px 28px rgba(8, 9, 8, 0.12));
 }
 
@@ -530,7 +554,8 @@ button {
   color: var(--yr-white);
 }
 
-.primary-nav.nav-dark .brand img {
+.primary-nav.nav-dark .brand img,
+.primary-nav.nav-dark .brand-partner img {
   filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.58));
 }
 
@@ -554,8 +579,13 @@ button {
   color: #080908;
 }
 
-.primary-nav.nav-light .brand img {
+.primary-nav.nav-light .brand img,
+.primary-nav.nav-light .brand-partner img {
   filter: invert(1) drop-shadow(0 14px 28px rgba(8, 9, 8, 0.12));
+}
+
+.primary-nav.nav-light .brand-divider {
+  background: rgba(8, 9, 8, 0.12);
 }
 
 .primary-nav.nav-light .nav-links,
@@ -590,8 +620,13 @@ button {
   color: #ffffff;
 }
 
-.property-site .listings-navbar .brand img {
+.property-site .listings-navbar .brand img,
+.property-site .listings-navbar .brand-partner img {
   filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.58));
+}
+
+.property-site .listings-navbar .brand-divider {
+  background: rgba(246, 244, 239, 0.16);
 }
 
 .property-site .listings-navbar .nav-links,
@@ -5036,7 +5071,19 @@ html.is-cursor-pressed .luxury-cursor-ring {
   }
 
   .brand {
-    width: 96px;
+    width: 82px;
+  }
+
+  .brand-cluster {
+    gap: 8px;
+  }
+
+  .brand-partner {
+    width: 82px;
+  }
+
+  .brand-divider {
+    height: 22px;
   }
 
   .nav-links {
@@ -5639,7 +5686,15 @@ html.is-cursor-pressed .luxury-cursor-ring {
   }
 
   .brand {
-    width: 92px;
+    width: 76px;
+  }
+
+  .brand-partner {
+    width: 74px;
+  }
+
+  .brand-divider {
+    height: 20px;
   }
 
   .navbar {
