@@ -573,7 +573,7 @@ export function YairoHero() {
   const [searchMode, setSearchMode] = useState("buy");
   const { scrollYProgress } = useScroll();
 
-  const readyTarget = useMemo(() => videos.length, []);
+  const readyTarget = useMemo(() => 1, []);
   const readyCount = Object.keys(readyMap).length;
   const contentY = useTransform(scrollYProgress, [0, 0.62], [0, -86]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.34, 0.68], [1, 0.88, 0]);
@@ -593,7 +593,7 @@ export function YairoHero() {
         });
         return next;
       });
-    }, 2400);
+    }, 900);
 
     return () => window.clearTimeout(fallback);
   }, [isLoaded]);
@@ -718,7 +718,7 @@ export function YairoHero() {
               }}
               className={index === activeVideo ? "hero-video is-active" : "hero-video"}
               src={video.src}
-              preload={video.eager ? "auto" : "metadata"}
+              preload={video.eager ? "auto" : "none"}
               muted
               loop
               playsInline
@@ -2825,8 +2825,8 @@ function MagneticAnchor({ children, className = "", strength = 0.22, ...props })
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 160, damping: 18, mass: 0.45 });
-  const springY = useSpring(y, { stiffness: 160, damping: 18, mass: 0.45 });
+  const springX = useSpring(x, { stiffness: 320, damping: 26, mass: 0.28 });
+  const springY = useSpring(y, { stiffness: 320, damping: 26, mass: 0.28 });
 
   const handlePointerMove = (event) => {
     const element = ref.current;
@@ -2852,7 +2852,7 @@ function MagneticAnchor({ children, className = "", strength = 0.22, ...props })
       onPointerMove={handlePointerMove}
       onPointerLeave={resetPosition}
       whileTap={{ scale: 0.985 }}
-      transition={{ duration: 0.36, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
       {...props}
     >
       {children}
@@ -2864,13 +2864,15 @@ function CustomCursor() {
   const reduceMotion = useReducedMotion();
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
-  const dotX = useSpring(cursorX, { stiffness: 780, damping: 42, mass: 0.18 });
-  const dotY = useSpring(cursorY, { stiffness: 780, damping: 42, mass: 0.18 });
-  const ringX = useSpring(cursorX, { stiffness: 180, damping: 24, mass: 0.5 });
-  const ringY = useSpring(cursorY, { stiffness: 180, damping: 24, mass: 0.5 });
+  const dotX = useSpring(cursorX, { stiffness: 1200, damping: 54, mass: 0.12 });
+  const dotY = useSpring(cursorY, { stiffness: 1200, damping: 54, mass: 0.12 });
+  const ringX = useSpring(cursorX, { stiffness: 520, damping: 38, mass: 0.22 });
+  const ringY = useSpring(cursorY, { stiffness: 520, damping: 38, mass: 0.22 });
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isFinePointer, setIsFinePointer] = useState(false);
+  const hoverRef = useRef(false);
+  const visibleRef = useRef(false);
 
   useEffect(() => {
     const finePointerQuery = window.matchMedia("(pointer: fine)");
@@ -2889,15 +2891,27 @@ function CustomCursor() {
     const handlePointerMove = (event) => {
       cursorX.set(event.clientX);
       cursorY.set(event.clientY);
-      setIsVisible(true);
-      setIsHovering(Boolean(event.target.closest(interactiveSelector)));
+      if (!visibleRef.current) {
+        visibleRef.current = true;
+        setIsVisible(true);
+      }
+      const hovering = Boolean(event.target.closest(interactiveSelector));
+      if (hovering !== hoverRef.current) {
+        hoverRef.current = hovering;
+        setIsHovering(hovering);
+      }
     };
 
-    const handlePointerLeave = () => setIsVisible(false);
+    const handlePointerLeave = () => {
+      visibleRef.current = false;
+      hoverRef.current = false;
+      setIsVisible(false);
+      setIsHovering(false);
+    };
     const handlePointerDown = () => document.documentElement.classList.add("is-cursor-pressed");
     const handlePointerUp = () => document.documentElement.classList.remove("is-cursor-pressed");
 
-    window.addEventListener("pointermove", handlePointerMove);
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
     document.documentElement.addEventListener("mouseleave", handlePointerLeave);
     window.addEventListener("pointerdown", handlePointerDown);
     window.addEventListener("pointerup", handlePointerUp);
@@ -2923,7 +2937,7 @@ function CustomCursor() {
           opacity: isVisible ? (isHovering ? 1 : 0.42) : 0,
           scale: isHovering ? 1.5 : 1,
         }}
-        transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
       />
       <motion.div
         className="luxury-cursor-dot"
@@ -2932,7 +2946,7 @@ function CustomCursor() {
           opacity: isVisible ? 1 : 0,
           scale: isHovering ? 0.72 : 1,
         }}
-        transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.1, ease: [0.16, 1, 0.3, 1] }}
       />
     </>
   );

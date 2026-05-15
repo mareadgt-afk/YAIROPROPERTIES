@@ -114,15 +114,14 @@ button {
   filter: saturate(0.58) contrast(1.24) brightness(0.58);
   transform: scale(1.025);
   transition:
-    opacity 2100ms var(--yr-ease),
-    filter 2100ms var(--yr-ease),
-    transform 7000ms linear;
-  will-change: opacity, transform, filter;
+    opacity 1100ms var(--yr-ease),
+    transform 5200ms linear;
+  will-change: opacity, transform;
 }
 
 .hero-video.is-active {
   opacity: 1;
-  transform: scale(1.068);
+  transform: scale(1.045);
 }
 
 .hero-scrim {
@@ -657,7 +656,7 @@ button {
   width: min(1180px, calc(100% - 40px));
   place-items: center;
   text-align: center;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 h1 {
@@ -715,16 +714,16 @@ h1 em {
     0 24px 70px rgba(18, 56, 50, 0.16),
     inset 0 1px 0 rgba(246, 244, 239, 0.14);
   color: var(--yr-white);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(8px);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition:
-    background 520ms var(--yr-ease),
-    border-color 520ms var(--yr-ease),
-    box-shadow 520ms var(--yr-ease),
-    color 520ms var(--yr-ease);
+    background 260ms var(--yr-ease),
+    border-color 260ms var(--yr-ease),
+    box-shadow 260ms var(--yr-ease),
+    color 260ms var(--yr-ease);
 }
 
 .cta::before {
@@ -734,7 +733,7 @@ h1 em {
   background: linear-gradient(110deg, transparent 0%, rgba(246, 244, 239, 0.18) 48%, transparent 54%);
   opacity: 0;
   transform: translateX(-120%);
-  transition: transform 900ms var(--yr-ease-editorial), opacity 520ms var(--yr-ease);
+  transition: transform 520ms var(--yr-ease-editorial), opacity 260ms var(--yr-ease);
 }
 
 .cta span {
@@ -920,9 +919,9 @@ h1 em {
     inset 0 1px 0 rgba(246, 244, 239, 0.08);
   transform-style: preserve-3d;
   transition:
-    border-color 760ms var(--yr-ease),
-    box-shadow 760ms var(--yr-ease),
-    filter 760ms var(--yr-ease);
+    border-color 320ms var(--yr-ease),
+    box-shadow 320ms var(--yr-ease),
+    filter 320ms var(--yr-ease);
 }
 
 .experience-panel::after {
@@ -934,7 +933,7 @@ h1 em {
   opacity: 0;
   pointer-events: none;
   transform: scale(1.025);
-  transition: opacity 760ms var(--yr-ease), transform 760ms var(--yr-ease);
+  transition: opacity 320ms var(--yr-ease), transform 320ms var(--yr-ease);
 }
 
 .panel-media,
@@ -953,9 +952,9 @@ h1 em {
   filter: saturate(0.54) contrast(1.2) brightness(0.58);
   transform: scale(1.035);
   transition:
-    transform 1200ms var(--yr-ease),
-    opacity 1200ms var(--yr-ease),
-    filter 1200ms var(--yr-ease);
+    transform 520ms var(--yr-ease),
+    opacity 420ms var(--yr-ease),
+    filter 420ms var(--yr-ease);
 }
 
 .panel-overlay {
@@ -963,7 +962,7 @@ h1 em {
   background:
     linear-gradient(180deg, rgba(5, 5, 5, 0.18), rgba(5, 5, 5, 0.58) 54%, rgba(5, 5, 5, 0.92)),
     linear-gradient(90deg, rgba(5, 5, 5, 0.68), rgba(5, 5, 5, 0.18));
-  transition: opacity 900ms var(--yr-ease), transform 900ms var(--yr-ease);
+  transition: opacity 420ms var(--yr-ease), transform 420ms var(--yr-ease);
 }
 
 .experience-buy .panel-overlay {
@@ -994,7 +993,7 @@ h1 em {
     radial-gradient(circle at 18% 22%, rgba(49, 88, 80, 0.34), transparent 35%),
     linear-gradient(135deg, rgba(18, 56, 50, 0.18), transparent 42%);
   transform: translate3d(-8%, 5%, 0);
-  transition: opacity 900ms var(--yr-ease), transform 900ms var(--yr-ease);
+  transition: opacity 420ms var(--yr-ease), transform 420ms var(--yr-ease);
 }
 
 .experience-buy .panel-light {
@@ -1050,7 +1049,7 @@ h1 em {
   line-height: 1.62;
   opacity: 0.78;
   transform: translateY(10px);
-  transition: opacity 760ms var(--yr-ease), transform 760ms var(--yr-ease);
+  transition: opacity 320ms var(--yr-ease), transform 320ms var(--yr-ease);
 }
 
 .panel-link {
@@ -1069,7 +1068,7 @@ h1 em {
   background: linear-gradient(90deg, rgba(200, 185, 141, 0.9), transparent);
   transform: scaleX(0.36);
   transform-origin: left;
-  transition: transform 760ms var(--yr-ease);
+  transition: transform 320ms var(--yr-ease);
 }
 
 .experience-panel:hover,
@@ -1932,7 +1931,7 @@ h1 em {
   background: linear-gradient(110deg, transparent, rgba(246, 244, 239, 0.16), transparent);
   opacity: 0;
   transform: translateX(-120%);
-  transition: transform 900ms var(--yr-ease-editorial), opacity 520ms var(--yr-ease);
+  transition: transform 420ms var(--yr-ease-editorial), opacity 520ms var(--yr-ease);
 }
 
 .search-submit:hover {
@@ -2076,7 +2075,7 @@ h1 em {
   object-fit: cover;
   filter: saturate(0.78) contrast(1.02) brightness(0.98);
   transform: scale(1.01);
-  transition: transform 1100ms var(--yr-ease), filter 1100ms var(--yr-ease);
+  transition: transform 520ms var(--yr-ease), filter 420ms var(--yr-ease);
 }
 
 .property-light {
@@ -2087,12 +2086,12 @@ h1 em {
     linear-gradient(180deg, rgba(246, 244, 239, 0.02), rgba(246, 244, 239, 0.16) 58%, rgba(8, 9, 8, 0.36)),
     radial-gradient(circle at 18% 20%, rgba(18, 56, 50, 0.14), transparent 34%);
   opacity: 0.86;
-  transition: opacity 900ms var(--yr-ease), transform 900ms var(--yr-ease);
+  transition: opacity 420ms var(--yr-ease), transform 420ms var(--yr-ease);
 }
 
 .property-card:hover .property-media img {
   filter: saturate(0.88) contrast(1.08) brightness(1.02);
-  transform: scale(1.075);
+  transform: scale(1.045);
 }
 
 .property-card:hover .property-light {
@@ -2541,7 +2540,7 @@ h1 em {
   height: clamp(330px, 38vw, 520px);
   object-fit: cover;
   filter: saturate(0.82) contrast(1.02) brightness(0.9);
-  transition: transform 1200ms var(--yr-ease), filter 1200ms var(--yr-ease);
+  transition: transform 520ms var(--yr-ease), filter 420ms var(--yr-ease);
 }
 
 .yairo-lifestyle-grid figure:hover img {
@@ -3202,7 +3201,7 @@ h1 em {
   object-fit: cover;
   object-position: center;
   filter: saturate(0.86) contrast(1.02);
-  transform: scale(1.06);
+  transform: scale(1.035);
 }
 
 .listings-hero-meta {
@@ -3450,7 +3449,7 @@ h1 em {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.84) contrast(1.02);
-  transition: transform 950ms var(--yr-ease), filter 950ms var(--yr-ease);
+  transition: transform 520ms var(--yr-ease), filter 420ms var(--yr-ease);
 }
 
 .listing-card:hover .listing-card-media img,
@@ -3654,7 +3653,7 @@ h1 em {
     linear-gradient(180deg, rgba(8, 9, 8, 0.03), rgba(8, 9, 8, 0.28)),
     radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 34%);
   opacity: 0.72;
-  transition: opacity 900ms var(--yr-ease), transform 900ms var(--yr-ease);
+  transition: opacity 420ms var(--yr-ease), transform 420ms var(--yr-ease);
 }
 
 .neighborhood-media img {
@@ -3665,7 +3664,7 @@ h1 em {
   object-fit: cover;
   filter: saturate(0.82) contrast(1.03) brightness(0.96);
   transform: scale(1.01);
-  transition: transform 1200ms var(--yr-ease), filter 1200ms var(--yr-ease);
+  transition: transform 520ms var(--yr-ease), filter 420ms var(--yr-ease);
 }
 
 .neighborhood-block:hover .neighborhood-media img {
@@ -4251,7 +4250,7 @@ h1 em {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.86) contrast(1.02);
-  transition: transform 1000ms var(--yr-ease), filter 1000ms var(--yr-ease);
+  transition: transform 520ms var(--yr-ease), filter 420ms var(--yr-ease);
 }
 
 .property-gallery button:hover img {
@@ -4597,7 +4596,7 @@ h1 em {
   object-fit: cover;
   filter: saturate(0.78) contrast(1.04) brightness(0.92);
   transform: scale(1.02);
-  transition: transform 1200ms var(--yr-ease), filter 1200ms var(--yr-ease);
+  transition: transform 520ms var(--yr-ease), filter 420ms var(--yr-ease);
 }
 
 .editorial-art::after {
@@ -4628,7 +4627,7 @@ h1 em {
 .journal-feature:hover .editorial-art img,
 .journal-feed-item:hover .editorial-art img {
   filter: saturate(0.9) contrast(1.06) brightness(0.98);
-  transform: scale(1.06);
+  transform: scale(1.035);
 }
 
 .concierge-inquiry {
@@ -5026,7 +5025,6 @@ h1 em {
   z-index: 100;
   pointer-events: none;
   translate: -50% -50%;
-  mix-blend-mode: difference;
   will-change: transform, opacity;
 }
 
@@ -5039,11 +5037,12 @@ h1 em {
 }
 
 .luxury-cursor-ring {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   border: 1px solid rgba(246, 244, 239, 0.56);
   border-radius: 999px;
-  background: rgba(246, 244, 239, 0.02);
+  background: rgba(5, 5, 5, 0.06);
+  box-shadow: 0 0 18px rgba(5, 5, 5, 0.1);
 }
 
 html.is-cursor-pressed .luxury-cursor-ring {
